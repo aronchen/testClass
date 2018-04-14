@@ -11,7 +11,7 @@ private:
 	std::vector<Transaction> log;
 public:
 	Account();
-	std::vector<std::string> Report();
+	std::vector<std::string> Report() const;
 	bool Deposit(int amt);
 	bool Withdraw(int amt);
 	int GetBalance() { return balance; }

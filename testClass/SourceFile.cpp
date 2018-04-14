@@ -4,10 +4,30 @@
 
 using namespace std;
 
+
+void ChangeParam(Transaction t)
+{
+//  Local Parameter
+	t.DoubleAmount();
+}
+
+void ChangeReference(Transaction& t)
+{
+//  Reference (Alias) (Same Address)
+	t.DoubleAmount();
+}
+
+void ChangeAddress(Transaction* t)
+{
+//  Pass address *t.  ==   t->
+	t->DoubleAmount();
+}
+
 int main()
 {
 	Account a1;
-	a1.Deposit(90);
+	const int amount = 90;
+	a1.Deposit(amount);
 	cout << "After depositing $90, " << "The balance is " << a1.GetBalance() << endl;
 	for (auto s : a1.Report())
 	{
@@ -26,5 +46,20 @@ int main()
 		cout << s << endl;
 			
 	}
+
+	cout << "Change Transaction" << endl;
+
+	Transaction ttt(50, "Deposit");
+	cout << "Original Transaction " << ttt.Report() << endl;
+	ChangeParam(ttt);
+	cout << "After Change Parameter " << ttt.Report() << endl;
+	ChangeReference(ttt); 
+	cout << "After Change Reference " << ttt.Report() << endl;
+	ChangeAddress(&ttt); // Address need operator
+	cout << "After Change Address " << ttt.Report() << endl;
+
+
+
+
 	return 0;
 }
